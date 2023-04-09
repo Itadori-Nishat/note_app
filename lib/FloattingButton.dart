@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/chatgptt.dart';
 
 class FloatingButton extends StatefulWidget {
 
@@ -9,6 +10,9 @@ class FloatingButton extends StatefulWidget {
 }
 
 class _FloatingButtonState extends State<FloatingButton> {
+
+  TextEditingController _controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,14 +22,15 @@ class _FloatingButtonState extends State<FloatingButton> {
         elevation: 1,
         leading: IconButton(
           onPressed: (){
-            Navigator.pop(context);
+            Navigator.pop(context, _controller.text);
           },
             icon:Icon(Icons.arrow_back_ios_rounded,),color: Colors.black,),
         actions: [
           IconButton(onPressed:
               (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) =>FirstPage()));
           },
-              icon: Icon(Icons.menu_book_sharp)),
+              icon: Icon(Icons.menu_book_sharp, color: Colors.black,)),
           IconButton(onPressed:
               (){
           },
@@ -36,6 +41,7 @@ class _FloatingButtonState extends State<FloatingButton> {
               icon: Icon(Icons.more_vert)),
         ],
         title: TextFormField(
+          controller: _controller,
           decoration: InputDecoration(
             hintText: "Title",
             hintStyle: TextStyle(

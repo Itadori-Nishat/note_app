@@ -10,7 +10,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  final items = List<String>.generate(20, (i) => "Item ${i + 1}");
+  String titleName = '';
+
+  void _handleDataFromSecondPage(String data) {
+    setState(() {
+      titleName = data;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,18 +28,34 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.teal,
         child: Icon(Icons.add),
-          onPressed: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context) => FloatingButton()));
+          onPressed: () async{
+          final data = await Navigator.push(context, MaterialPageRoute(builder: (context) => FloatingButton()));
+            _handleDataFromSecondPage(data);
       }),
-      body: ListView.builder(
-        itemCount: items.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(items[index]),
-          );
-        },
-
+      body: Column(
+        children: [
+          Text(titleName),
+          // Expanded(
+          //   child: ListView.builder(
+          //     itemCount: 5,
+          //     itemBuilder: (BuildContext context, int index) {
+          //       return Card(
+          //         child: Padding(
+          //           padding: const EdgeInsets.all(8.0),
+          //           child: SizedBox(
+          //             width: MediaQuery.of(context).size.width*0.8,
+          //             child: Text(titleName[index],style:  TextStyle(
+          //               fontSize: 18,
+          //
+          //             ),),
+          //           ),
+          //         ),
+          //       );
+          //     },
+          //
+          //   ),
+          // ),
+        ],
       ),
     );
   }
