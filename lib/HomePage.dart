@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
         title: Text("Dark mode on/off"),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.teal,
         child: Icon(Icons.add),
           onPressed: (){
         Navigator.push(context, MaterialPageRoute(builder: (context) => FloatingButton()));
